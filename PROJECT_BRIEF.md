@@ -46,7 +46,7 @@ Grill-miniの定義はRegistryおよび対応するSKILL.mdの最新版を参照
 
 ## HANDOFF運用
 前回までの作業・相談の続きから再開するための引き継ぎ情報は、リポジトリ直下の `HANDOFF.md` を使用する。
-ユーザーが以下のような継続・引き継ぎの意図を示した場合、現在の会話やMemoryだけを頼りに再開せず、GitHubリポジトリ `pui31/hoshihuri` の `HANDOFF.md` の最新版を実際に取得して参照する。
+ユーザーが以下のような継続・引き継ぎの意図を示した場合、現在の会話やMemoryだけを頼りに再開せず、GitHubリポジトリ `pui31/pfcapp` の `HANDOFF.md` の最新版を実際に取得して参照する。
 
 * 「HANDOFF」
 * 「HAND-OFF」
