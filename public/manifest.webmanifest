@@ -1,0 +1,9 @@
+{
+  "name": "PFCApp",
+  "short_name": "PFCApp",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff9ef",
+  "theme_color": "#fff9ef",
+  "icons": []
+}
