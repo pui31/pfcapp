@@ -1,7 +1,8 @@
 {
   "name": "PFCApp",
   "short_name": "PFCApp",
-  "start_url": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#fff9ef",
   "theme_color": "#fff9ef",

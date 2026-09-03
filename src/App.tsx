@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, type CSSProperties } from 'react'
-import { addPfc, emptyPfc, localDateKey, nutrientMeta, quantityLabels, quantityMultiplier, rulerScale, scalePfc, starsFor, type Nutrient, type Pfc, type Quantity } from './domain'
-import { categoryTabs, temporaryFoodMaster, type Food, type FoodCategory } from './data/temporaryFoodMaster'
+import { addPfc, emptyPfc, localDateKey, nutrientMeta, quantityLabels, rulerScale, scalePfc, starsFor, type Nutrient, type Pfc, type Quantity } from './domain'
+import { categoryTabs, foodMaster, type Food, type FoodCategory } from './data/foodMaster'
 import { loadLogs, saveLogs, type FoodLog } from './storage'
 
 type Screen = 'today' | 'add'
@@ -47,9 +47,9 @@ function AddScreen({ total, onBack, onAdd }: { total: Pfc; onBack: () => void; o
   const [food, setFood] = useState<Food | null>(null)
   const [quantity, setQuantity] = useState<Quantity | null>(null)
   const addLock = useRef(false)
-  const selectedPfc = food && quantity ? scalePfc(food.normalPfc, food.quantityMultipliers?.[quantity] ?? quantityMultiplier[quantity]) : undefined
+  const selectedPfc = food && quantity ? scalePfc(food.normalNutrition, quantity === 'normal' ? 1 : food.quantityMultipliers[quantity]) : undefined
   const preview = selectedPfc ? addPfc(total, selectedPfc) : undefined
-  const foods = category ? temporaryFoodMaster.filter((item) => item.category === category) : []
+  const foods = category ? foodMaster.filter((item) => item.category === category) : []
   const groups = foods.reduce<Record<string, Food[]>>((all, item) => ({ ...all, [item.subcategory]: [...(all[item.subcategory] ?? []), item] }), {})
   function changeCategory(next: FoodCategory) { setCategory(next); setFood(null); setQuantity(null) }
   function selectFood(next: Food) { setFood(next); setQuantity(null) }
@@ -61,7 +61,7 @@ function AddScreen({ total, onBack, onAdd }: { total: Pfc; onBack: () => void; o
       {!category ? <p className="choose-category">カテゴリをえらぼう</p> : <div className="food-groups">{Object.entries(groups).map(([name, items]) => <section key={name}><h2>{name}</h2><div className="food-grid">{items.map((item) => <button className={food?.id === item.id ? 'food active' : 'food'} key={item.id} onClick={() => selectFood(item)}><span>{item.icon}</span>{item.name}</button>)}</div></section>)}</div>}
     </section>
     <section className={`selection-panel ${food ? 'expanded' : ''}`}>
-      {food ? <><div className="chosen-food"><span>{food.icon}</span><div><b>{food.name}</b><small>ふつう（{food.normalAmountLabel}）</small></div></div><div className="quantity-buttons">{(['small', 'normal', 'large'] as Quantity[]).map((item) => <button key={item} className={quantity === item ? 'active' : ''} onClick={() => setQuantity(item)}>{quantityLabels[item]}</button>)}</div>{selectedPfc && <div className="preview-details"><StarLine pfc={selectedPfc} /><span>上の物差しに、増えるぶんが光っているよ</span></div>}</> : <p>食べものをえらぶと、ここで量をえらべるよ</p>}
+      {food ? <><div className="chosen-food"><span>{food.icon}</span><div><b>{food.name}</b><small>ふつう（{food.amounts.normalLabel}）</small></div></div><div className="quantity-buttons">{(['small', 'normal', 'large'] as Quantity[]).map((item) => <button key={item} className={quantity === item ? 'active' : ''} onClick={() => setQuantity(item)}>{quantityLabels[item]}</button>)}</div>{selectedPfc && <div className="preview-details"><StarLine pfc={selectedPfc} /><span>上の物差しに、増えるぶんが光っているよ</span></div>}</> : <p>食べものをえらぶと、ここで量をえらべるよ</p>}
       <button className="add-button" disabled={!food || !quantity} onClick={() => { if (food && quantity && !addLock.current) { addLock.current = true; onAdd(food, quantity) } }}>追加する</button>
     </section>
   </main>
@@ -84,9 +84,9 @@ export default function App() {
   const todayLogs = useMemo(() => logs.filter((log) => log.dateKey === todayKey).sort((a, b) => b.createdAt.localeCompare(a.createdAt)), [logs, todayKey])
   const total = useMemo(() => todayLogs.reduce((sum, log) => addPfc(sum, log.pfc), emptyPfc()), [todayLogs])
   function addLog(food: Food, quantity: Quantity) {
-    const pfc = scalePfc(food.normalPfc, food.quantityMultipliers?.[quantity] ?? quantityMultiplier[quantity])
+    const pfc = scalePfc(food.normalNutrition, quantity === 'normal' ? 1 : food.quantityMultipliers[quantity])
     const now = new Date()
-    const log: FoodLog = { id: crypto.randomUUID(), foodId: food.id, foodName: food.name, icon: food.icon, quantity, normalAmountLabel: food.normalAmountLabel, pfc, createdAt: now.toISOString(), dateKey: localDateKey(now) }
+    const log: FoodLog = { id: crypto.randomUUID(), foodId: food.id, foodName: food.name, icon: food.icon, quantity, normalAmountLabel: food.amounts.normalLabel, pfc, createdAt: now.toISOString(), dateKey: localDateKey(now) }
     setLogs((previous) => { const next = [...previous, log]; saveLogs(next); return next })
     setScreen('today')
   }

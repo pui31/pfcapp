@@ -11,7 +11,6 @@ export const nutrientMeta: Record<Nutrient, { label: string; color: string; unit
 export const emptyPfc = (): Pfc => ({ P: 0, F: 0, C: 0 })
 export const addPfc = (left: Pfc, right: Pfc): Pfc => ({ P: left.P + right.P, F: left.F + right.F, C: left.C + right.C })
 export const scalePfc = (pfc: Pfc, multiplier: number): Pfc => ({ P: pfc.P * multiplier, F: pfc.F * multiplier, C: pfc.C * multiplier })
-export const quantityMultiplier: Record<Quantity, number> = { small: 0.55, normal: 1, large: 1.55 }
 export const quantityLabels: Record<Quantity, string> = { small: 'ちょっと', normal: 'ふつう', large: 'いっぱい' }
 
 export function starsFor(value: number, nutrient: Nutrient): number {

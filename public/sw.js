@@ -1,5 +1,5 @@
-const CACHE = 'pfcapp-mvp-v1';
-const APP_SHELL = ['/'];
+const CACHE = 'pfcapp-mvp-v2';
+const APP_SHELL = [new URL('./', self.location.href).pathname];
 
 self.addEventListener('install', (event) => {
   event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(APP_SHELL)));
@@ -16,6 +16,6 @@ self.addEventListener('fetch', (event) => {
         caches.open(CACHE).then((cache) => cache.put(event.request, response.clone()));
       }
       return response;
-    }).catch(() => caches.match(event.request).then((cached) => cached || caches.match('/'))),
+    }).catch(() => caches.match(event.request).then((cached) => cached || caches.match(APP_SHELL[0]))),
   );
 });
