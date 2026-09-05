@@ -28,7 +28,7 @@ function parseCsv(text) {
 
 const [header, ...rows] = parseCsv(await readFile(sourcePath, 'utf8'))
 const records = rows.map((row) => Object.fromEntries(header.map((column, index) => [column, row[index] ?? ''])))
-if (records.length !== 61) throw new Error(`Expected 61 food records, found ${records.length}`)
+if (records.length !== 67) throw new Error(`Expected 67 food records, found ${records.length}`)
 
 const foods = records.map((food) => ({
   id: `food-${food.No}`,

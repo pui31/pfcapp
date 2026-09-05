@@ -1795,5 +1795,179 @@ export const foodMaster: Food[] = [
       "confidence": "概算",
       "note": "キャベツ1/4個、味噌適量、水600ml、塩1/4。全量で計算。"
     }
+  },
+  {
+    "id": "food-62",
+    "name": "給食",
+    "category": "その他",
+    "subcategory": "🍱 給食",
+    "icon": "🍱",
+    "amounts": {
+      "normalInternal": "100%",
+      "smallInternal": "80%",
+      "largeInternal": "120%",
+      "normalLabel": "完食"
+    },
+    "quantityMultipliers": {
+      "small": 0.8,
+      "large": 1.2
+    },
+    "normalNutrition": {
+      "kcal": 650,
+      "P": 26.8,
+      "F": 18.1,
+      "C": 95.1
+    },
+    "source": {
+      "basis": "8〜9歳の学校給食摂取基準をベースに、PFCエネルギー比を基準範囲中央付近に置いた概算値",
+      "url": "",
+      "confidence": "概算",
+      "note": "個別献立を再現するものではなく、「今日の昼は給食だった」を1回で記録するための平均的な仮想食品"
+    }
+  },
+  {
+    "id": "food-63",
+    "name": "カレー",
+    "category": "主食",
+    "subcategory": "🍚 主食",
+    "icon": "🍛",
+    "amounts": {
+      "normalInternal": "お米120g+カレー150g",
+      "smallInternal": "お米100g+カレー100g",
+      "largeInternal": "お米200g+カレー250g",
+      "normalLabel": "1皿"
+    },
+    "quantityMultipliers": {
+      "small": 0.765,
+      "large": 1.66
+    },
+    "normalNutrition": {
+      "kcal": 310,
+      "P": 7.8,
+      "F": 7.6,
+      "C": 55.4
+    },
+    "source": {
+      "basis": "一般的な家庭カレーの概算",
+      "url": "",
+      "confidence": "概算",
+      "note": "バーモントカレー＋玉ねぎ＋にんじん＋皮なし鶏もも肉＋じゃがいも"
+    }
+  },
+  {
+    "id": "food-64",
+    "name": "コロッケ",
+    "category": "おかず",
+    "subcategory": "🍟 揚げ物",
+    "icon": "🍟",
+    "amounts": {
+      "normalInternal": "2個",
+      "smallInternal": "1個",
+      "largeInternal": "3個",
+      "normalLabel": "2個"
+    },
+    "quantityMultipliers": {
+      "small": 0.5,
+      "large": 1.5
+    },
+    "normalNutrition": {
+      "kcal": 271,
+      "P": 6.4,
+      "F": 15.1,
+      "C": 30.2
+    },
+    "source": {
+      "basis": "一般的なポテトコロッケ1個約60gとして概算",
+      "url": "",
+      "confidence": "概算",
+      "note": ""
+    }
+  },
+  {
+    "id": "food-65",
+    "name": "鶏肉",
+    "category": "おかず",
+    "subcategory": "🥩 お肉",
+    "icon": "🥩",
+    "amounts": {
+      "normalInternal": "150g",
+      "smallInternal": "100g",
+      "largeInternal": "200g",
+      "normalLabel": "150g"
+    },
+    "quantityMultipliers": {
+      "small": 0.667,
+      "large": 1.333
+    },
+    "normalNutrition": {
+      "kcal": 170,
+      "P": 28.5,
+      "F": 7.5,
+      "C": 0
+    },
+    "source": {
+      "basis": "皮なし鶏もも肉の一般値",
+      "url": "",
+      "confidence": "中",
+      "note": ""
+    }
+  },
+  {
+    "id": "food-66",
+    "name": "牛乳",
+    "category": "その他",
+    "subcategory": "🥛 飲みもの",
+    "icon": "🥛",
+    "amounts": {
+      "normalInternal": "200ml",
+      "smallInternal": "100ml",
+      "largeInternal": "300ml",
+      "normalLabel": "小さめコップ1杯"
+    },
+    "quantityMultipliers": {
+      "small": 0.5,
+      "large": 1.5
+    },
+    "normalNutrition": {
+      "kcal": 74,
+      "P": 6.2,
+      "F": 1.2,
+      "C": 9.5
+    },
+    "source": {
+      "basis": "雪印メグミルク「すっきりCa鉄（栄養機能食品）」メーカー値",
+      "url": "",
+      "confidence": "高",
+      "note": ""
+    }
+  },
+  {
+    "id": "food-67",
+    "name": "麦茶",
+    "category": "その他",
+    "subcategory": "🥛 飲みもの",
+    "icon": "🥛",
+    "amounts": {
+      "normalInternal": "200ml",
+      "smallInternal": "100ml",
+      "largeInternal": "300ml",
+      "normalLabel": "小さめコップ1杯"
+    },
+    "quantityMultipliers": {
+      "small": 0.5,
+      "large": 1.5
+    },
+    "normalNutrition": {
+      "kcal": 2,
+      "P": 0,
+      "F": 0,
+      "C": 0.6
+    },
+    "source": {
+      "basis": "一般的な麦茶",
+      "url": "",
+      "confidence": "中",
+      "note": ""
+    }
   }
 ]
