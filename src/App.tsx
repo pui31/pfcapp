@@ -24,7 +24,7 @@ function Ruler({ nutrient, current, future, mini = false }: { nutrient: Nutrient
   const scale = rulerScale(Math.max(currentMemories, futureMemories ?? 0))
   const position = (value: number) => `${Math.min(100, Math.max(0, value / scale * 100))}%`
   return <div className={`ruler-row ${mini ? 'mini-ruler' : ''}`}>
-    <div className="ruler-label"><Character nutrient={nutrient} /><span>{meta.label}</span></div>
+    <div className="ruler-label"><Character nutrient={nutrient} /><span className="ruler-label-text">{meta.label}</span></div>
     <div className="ruler" style={{ '--accent': meta.color, '--zone-start': position(meta.zone[0]), '--zone-end': position(meta.zone[1]) } as CSSProperties}>
       <span className="zone"><i className="zone-boundary zone-start" /><i className="zone-boundary zone-end" /></span>
       <span className="fill" style={{ width: position(currentMemories) }} />
