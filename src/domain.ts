@@ -29,3 +29,14 @@ export function localDateKey(date = new Date()) {
   const day = String(date.getDate()).padStart(2, '0')
   return `${year}-${month}-${day}`
 }
+
+export function localDateFromKey(dateKey: string) {
+  const [year, month, day] = dateKey.split('-').map(Number)
+  return new Date(year, month - 1, day, 12)
+}
+
+export function shiftLocalDateKey(dateKey: string, days: number) {
+  const date = localDateFromKey(dateKey)
+  date.setDate(date.getDate() + days)
+  return localDateKey(date)
+}
